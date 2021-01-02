@@ -12,12 +12,13 @@ public class SeleniumConfiguration {
 
     @PostConstruct
     void postConstruct() {
-        System.setProperty("webdriver.chrome.driver", "../../../chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "CHROMEDRIVER_PATH");
     }
 
     @Bean
     public ChromeDriver driver() {
         final ChromeOptions options = new ChromeOptions();
+        options.setBinary("GOOGLE_CHROME_BIN");
         options.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200", "--ignore-certificate-errors");
         return new ChromeDriver(options);
     }
