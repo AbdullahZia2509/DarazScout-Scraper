@@ -97,7 +97,7 @@ public class ProductServiceImpl implements ProductService {
 
     public void sendProductToWebApp(Product product)
     {
-        final String uri = "http://localhost:8080/api/product/create";
+        final String uri = "https://darazscout-wepp-app.herokuapp.com/api/product/create";
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Product> result = restTemplate.postForEntity( uri, product, Product.class);
 
