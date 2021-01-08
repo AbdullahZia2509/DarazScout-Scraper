@@ -17,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -28,6 +29,7 @@ public class ProductServiceImpl implements ProductService {
     public void scrapeProductPage(final String value) {
         Product product = new Product();
         driver.get(URL + value);
+        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
         final WebElement title = driver.findElement(By.className("pdp-mod-product-badge-title"));
         final WebElement avgRating = driver.findElement(By.className("score"));
@@ -51,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
         product.setAvgRating(extractNumeric(avgRating.getText()));
         product.setReviewCount((int) extractNumeric(reviewCount.getText()));
         product.setBrand(brand.getText());
-        product.setPrice(extractNumeric(price.getText()) % 1);
+        product.setPrice(price.getText().replace("Rs. ", ""));
         product.setNumberOfImages(imageCount.size());
         product.setImagesLink(image.getAttribute("src"));
         product.setSKU(SKU.getText());

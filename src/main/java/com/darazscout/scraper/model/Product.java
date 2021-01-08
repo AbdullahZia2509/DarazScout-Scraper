@@ -21,7 +21,7 @@ public class Product {
     private String brand;
     private String SKU;
     private double monthlyRevenue;
-    private double price;
+    private String price;
     private int stock;
     private int reviewCount;
     private double avgRating;
