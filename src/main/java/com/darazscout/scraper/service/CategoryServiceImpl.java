@@ -79,7 +79,7 @@ public class CategoryServiceImpl implements CategoryService {
 
   @Override
   public void sendCategoryToWebApp() {
-    final String uri = "http://localhost:8080/api/category/createall";
+    final String uri = "https://darazscout-wepp-app.herokuapp.com/api/category/createall";
     RestTemplate restTemplate = new RestTemplate();
     List<Category> categoryList = categoryRepository.findAll();
     ResponseEntity<Category> result = restTemplate.postForEntity(uri, categoryList, Category.class);
