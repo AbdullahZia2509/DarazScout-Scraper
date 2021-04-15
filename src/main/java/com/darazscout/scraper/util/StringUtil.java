@@ -1,9 +1,5 @@
 package com.darazscout.scraper.util;
 
-/**
- * @author Muhammad Haris
- * @date 08-Jan-21
- */
 public abstract class StringUtil {
 
   private StringUtil() {

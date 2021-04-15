@@ -1,15 +1,13 @@
 package com.darazscout.scraper.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@ToString
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,8 +18,9 @@ public class Product {
     private String title;
     private String brand;
     private String SKU;
+    private String category;
     private double monthlyRevenue;
-    private String price;
+    private int price;
     private int stock;
     private int reviewCount;
     private double avgRating;

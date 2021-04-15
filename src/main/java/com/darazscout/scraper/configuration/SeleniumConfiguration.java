@@ -2,6 +2,7 @@ package com.darazscout.scraper.configuration;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,7 +16,7 @@ public class SeleniumConfiguration {
         System.setProperty("webdriver.chrome.driver", ".chromedriver/bin/chromedriver");
     }
 
-    // E:\chromedriver.exe
+    // E:\chromedriver.exe .chromedriver/bin/chromedriver
     @Bean
     public ChromeDriver driver() {
         final ChromeOptions options = new ChromeOptions();

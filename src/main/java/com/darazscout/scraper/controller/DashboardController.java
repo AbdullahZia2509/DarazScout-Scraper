@@ -4,17 +4,20 @@ import com.darazscout.scraper.model.Category;
 import com.darazscout.scraper.repository.CategoryRepository;
 import com.darazscout.scraper.service.CategoryService;
 import com.darazscout.scraper.service.ProductService;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/dashboard")
 public class DashboardController {
@@ -29,10 +32,13 @@ public class DashboardController {
   @Autowired
   private CategoryService categoryService;
 
-  @RequestMapping({"/hello"})
-  public String hello() {
-    return "Helo World";
-  }
+//  @Scheduled(cron = "0/5 * * ? * *" , zone="GMT+5")
+//  private void testSchedule() {
+//    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+//    Date now = new Date();
+//    String strDate = sdf.format(now);
+//    System.out.println("Java cron job expression:: " + strDate);
+//  }
 
   @RequestMapping("/scrapeproduct")
   private void scrapeProduct(String productPageLink) {
@@ -52,8 +58,9 @@ public class DashboardController {
   }
 
   @RequestMapping("fullblownscrape")
-  private ResponseEntity scrapeFullData() {
+  public ResponseEntity scrapeFullData() {
     try {
+      LOGGER.info("Going to scrape all categories");
       categoryService.scrapeProductsAgainstAllCategories();
       return new ResponseEntity(HttpStatus.OK);
     } catch (Exception e) {

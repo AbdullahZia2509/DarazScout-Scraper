@@ -11,6 +11,5 @@ public interface CategoryService {
 
   void sendCategoryToWebApp();
 
-  @Async
   Future<String> scrapeProductsAgainstAllCategories();
 }

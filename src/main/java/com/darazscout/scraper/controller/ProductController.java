@@ -25,4 +25,6 @@ public class ProductController {
         productService.scrapeSearchPage(searchPageLink);
     }
 
+
+
 }
